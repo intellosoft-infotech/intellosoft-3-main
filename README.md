@@ -221,13 +221,13 @@ Beautiful animations powered by Framer Motion:
 
 ## 📄 License
 
-Copyright © 2024 Intellosoft Infotech Pvt. Ltd. All Rights Reserved.
+Copyright © 2026 Intellosoft Infotech Pvt. Ltd. All Rights Reserved.
 
 ## 💬 Support
 
 For questions or support:
 - Email: gourav@intellosoft.io
-- Website: [https://intellosoft.io](https://intellosoft.io)
+- Website: [https://www.intellosoft.io](https://www.intellosoft.io)
 
 ## 🎉 Acknowledgments
 

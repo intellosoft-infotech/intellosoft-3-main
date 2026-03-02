@@ -57,11 +57,20 @@ export default function Careers() {
     {
       title: 'Senior Full Stack Developer',
       department: 'Engineering',
-      location: 'Bhopal / Remote',
+      location: 'Bhopal',
       type: 'Full-time',
       experience: '5-7 years',
       skills: ['React', 'Node.js', 'AWS', 'MongoDB'],
       description: 'Looking for an experienced full-stack developer to lead complex projects'
+    },
+    {
+      title: 'SDE Intern',
+      department: 'Engineering',
+      location: 'Bhopal',
+      type: 'Full-time',
+      experience: 'Fresher',
+      skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Next.js',],
+      description: 'Familiarity with frontend technologies and JavaScript frameworks'
     },
   ]
 

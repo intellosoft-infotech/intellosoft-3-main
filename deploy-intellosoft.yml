@@ -1,0 +1,24 @@
+name: Deploy intellosoft-3-main to VPS
+
+on:
+  push:
+    branches: [main]   # change if your default branch is different
+
+jobs:
+  deploy-intellosoft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            cd /root/intellosoft-3-main
+            git pull origin main
+            npm install
+            npm run build
+            pm2 restart intellosoft-3-main || pm2 start "npx next start -p 3001" --name intellosoft-3-main
+            pm2 save

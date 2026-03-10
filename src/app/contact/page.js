@@ -150,7 +150,7 @@ export default function Contact() {
                 Let's Start a <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Conversation</span>
               </h1>
               <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto">
-                Have a project in mind? We'd love to hear from you. Get in touch and let's bring your vision to life.
+                Have a project in mind? We would love to hear from you. Get in touch and let's bring your vision to life.
               </p>
             </motion.div>
           </motion.div>

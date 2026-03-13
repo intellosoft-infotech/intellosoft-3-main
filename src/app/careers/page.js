@@ -72,6 +72,15 @@ export default function Careers() {
       skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Next.js',],
       description: 'Familiarity with frontend technologies and JavaScript frameworks'
     },
+    {
+      title: 'UI/UX Designer Engineering | Bhopal | Contract',
+      department: 'Engineering',
+      location: 'Bhopal',
+      type: 'Full-time',
+      experience: '3-4 years',
+      skills: ['Figma', 'Adobe', 'Sketch', 'InVision',],
+      description: 'We are seeking a creative and user-centric UI/UX Designer with proven experience designing intuitive and visually engaging digital experiences.'
+    },
   ]
 
   const perks = [

@@ -10,15 +10,9 @@ export const metadata = {
   description: 'Leading software consulting firm providing cutting-edge IT services consulting, software solutions, and technology consulting to help businesses accelerate growth and digital transformation.',
   keywords: 'software consulting, IT services, technology consulting, software solutions, digital transformation, cloud solutions, mobile app development, web development',
   icons: {
-    icon: [
-      { url: '/intellosoft-logosa.png', sizes: '16x16', type: 'image/png' },
-      { url: '/intellosoft-logosa.png', sizes: '32x32', type: 'image/png' },
-      { url: '/intellosoft-logosa.png', sizes: '64x64', type: 'image/png' },
-      { url: '/intellosoft-logosa.png', sizes: '192x192', type: 'image/png' },
-      { url: '/intellosoft-logosa.png', sizes: '512x512', type: 'image/png' }
-    ],
-    shortcut: '/intellosoft-logosa.png',
-    apple: '/intellosoft-logosa.png'
+    icon: '/Intellosoft%20infotech%20svg.svg',
+    shortcut: '/Intellosoft%20infotech%20svg.svg',
+    apple: '/Intellosoft%20infotech%20svg.svg'
   }
 }
 

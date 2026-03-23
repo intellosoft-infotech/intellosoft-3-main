@@ -182,7 +182,7 @@ export default function Navigation() {
             exit={{ opacity: 0, y: -12, scale: 0.97 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
             className="
-              fixed top-[64px] left-4 right-4 z-40 lg:hidden
+              fixed top-[90px] left-4 right-4 z-40 lg:hidden
               bg-white/90 backdrop-blur-2xl rounded-3xl shadow-2xl
               border border-white/70 overflow-hidden
             "

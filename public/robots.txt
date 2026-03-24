@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /category
+Disallow: /testned
+
+# Sitemap
+Sitemap: https://www.intellosoft.io/sitemap.xml

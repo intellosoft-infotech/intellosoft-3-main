@@ -10,6 +10,9 @@ export const metadata = {
   title: 'Intellosoft Infotech - Intelligent Solutions. Infinite Possibilities.',
   description: 'Leading software consulting firm providing cutting-edge IT services consulting, software solutions, and technology consulting to help businesses accelerate growth and digital transformation.',
   keywords: 'software consulting, IT services, technology consulting, software solutions, digital transformation, cloud solutions, mobile app development, web development',
+  alternates: {
+    canonical: 'https://www.intellosoft.io',
+  },
   robots: {
     index: true,
     follow: true,

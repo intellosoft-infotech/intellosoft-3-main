@@ -63,15 +63,6 @@ export default function About() {
       linkedin: "https://www.linkedin.com/in/gourav-patidar-15a19449/",
     },
     {
-      name: "Priya Patel",
-      role: "CTO",
-      image:
-        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop",
-      description: "Tech innovator specializing in cloud architecture",
-      gradient: "from-purple-600 to-pink-600",
-      linkedin: "#",
-    },
-    {
       name: "Deependra Patel",
       role: "Senior Software Engineer",
       image:
@@ -79,6 +70,24 @@ export default function About() {
       description: "Full-stack MERN developer specializing in scalable web applications, modern JavaScript frameworks, and building robust RESTful APIs",
       gradient: "from-green-600 to-emerald-600",
       linkedin: "https://www.linkedin.com/in/deependra-patel-57b0ba266/",
+    },
+    {
+      name: "Manya Gupta",
+      role: "Digital Marketing Executive",
+      image:
+        "/manya.jpeg",
+      description: "Creative marketer with expertise in SEO, content strategy, and social media management to drive brand growth and engagement",
+      gradient: "from-pink-600 to-rose-600",
+      linkedin: "https://www.linkedin.com/in/manya-gupta-644162179/",
+    },
+    {
+      name: "Vimla Issar",
+      role: "Ui/UX Intern",
+      image:
+        "/vimi.jpeg",
+      description: "Aspiring UI/UX designer passionate about creating intuitive and visually appealing user experiences through thoughtful design and user research",
+      gradient: "from-purple-600 to-violet-600",
+      linkedin: "https://www.linkedin.com/in/vimla-issar-a9252a270/",
     },
    
   ];
@@ -532,7 +541,7 @@ export default function About() {
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, index) => (
               <motion.div
                 key={index}
@@ -543,12 +552,12 @@ export default function About() {
                 className="group relative"
               >
                 <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 border border-gray-100">
-                  <div className="relative overflow-hidden h-80">
+                  <div className="relative overflow-hidden h-72">
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover transform-gpu scale-105 transition-transform duration-700 ease-out"
-                      style={{ objectPosition: member.name === 'Gourav Patidar' ? 'center 10%' : 'center 30%' }}
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                      style={{ objectPosition: member.name === 'Gourav Patidar' ? 'top center' : 'center' }}
                     />
                     {/* Gradient Overlay on Hover */}
                     <div

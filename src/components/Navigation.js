@@ -9,6 +9,8 @@ import { usePathname } from 'next/navigation'
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [productsHovered, setProductsHovered] = useState(false)
+  const [productsExpandedMobile, setProductsExpandedMobile] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -23,6 +25,7 @@ export default function Navigation() {
     { name: 'About Us', href: '/about' },
     { name: 'Services', href: '/services' },
     { name: 'Careers', href: '/careers' },
+    { name: 'Our Products', href: 'https://csync.co/', external: true },
     { name: 'Contact', href: '/contact' },
   ]
 
@@ -71,37 +74,95 @@ export default function Navigation() {
           <div className="w-px h-6 bg-gradient-to-b from-transparent via-gray-300 to-transparent mx-1" />
 
           {/* Nav links - centered group */}
-          <div className="flex items-center gap-1 flex-1 justify-center">
+          <div className="flex items-center gap-1 flex-1 justify-center relative">
           {navItems.map((item) => {
             const isActive = pathname === item.href
+            const isProductsItem = item.name === 'Our Products'
+            const LinkComponent = item.external ? 'a' : Link
+            const linkProps = item.external && !isProductsItem
+              ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' }
+              : !isProductsItem ? { href: item.href } : {}
+            
             return (
-              <Link key={item.name} href={item.href}>
-                <motion.div
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  className={`
-                    relative px-5 py-2.5 rounded-full text-[15px] font-semibold cursor-pointer
-                    transition-colors duration-200 select-none
-                    ${isActive
-                      ? 'text-white'
-                      : 'text-gray-600 hover:text-gray-900'
-                    }
-                  `}
-                >
-                  {/* Active background pill */}
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-active-pill"
-                      className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-600 to-secondary-600"
-                      style={{
-                        boxShadow: '0 2px 12px rgba(99,102,241,0.45), inset 0 1px 0 rgba(255,255,255,0.2)',
-                      }}
-                      transition={{ type: 'spring', stiffness: 380, damping: 32 }}
-                    />
-                  )}
-                  <span className="relative z-10">{item.name}</span>
-                </motion.div>
-              </Link>
+              <div
+                key={item.name}
+                onMouseEnter={() => isProductsItem && setProductsHovered(true)}
+                onMouseLeave={() => isProductsItem && setProductsHovered(false)}
+                className="relative"
+              >
+                <LinkComponent {...linkProps}>
+                  <motion.div
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.96 }}
+                    className={`
+                      relative px-5 py-2.5 rounded-full text-[15px] font-semibold cursor-pointer
+                      transition-colors duration-200 select-none
+                      ${isActive && !item.external
+                        ? 'text-white'
+                        : 'text-gray-600 hover:text-gray-900'
+                      }
+                    `}
+                  >
+                    {/* Active background pill */}
+                    {isActive && !item.external && (
+                      <motion.span
+                        layoutId="nav-active-pill"
+                        className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-600 to-secondary-600"
+                        style={{
+                          boxShadow: '0 2px 12px rgba(99,102,241,0.45), inset 0 1px 0 rgba(255,255,255,0.2)',
+                        }}
+                        transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item.name}</span>
+                  </motion.div>
+                </LinkComponent>
+
+                {/* Products Dropdown */}
+                {isProductsItem && (
+                  <AnimatePresence>
+                    {productsHovered && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 z-50"
+                      >
+                        <a
+                          href="https://csync.co/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block"
+                        >
+                          <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100 hover:shadow-3xl transition-all duration-300">
+                            {/* Product card */}
+                            <div className="p-6">
+                              <div className=" items-start gap-4">
+                                <img 
+                                  src="https://csync.co/CSync%20Final%20SVG.svg" 
+                                  alt="CSync logo"
+                                  className="w-[8rem] h-6 mb-2 mr-8 flex-shrink-0"
+                                />
+                                <div>
+                                  <p className="text-sm text-gray-600">CS Practice Management Platform</p>
+                                </div>
+                              </div>
+                              <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                                The operating system for Company Secretary practices. Manage tasks, compliance workflows, team approvals, and multi-firm operations seamlessly in one powerful platform.
+                              </p>
+                              <div className="flex items-center gap-2 text-blue-600 font-semibold text-sm hover:gap-3 transition-all">
+                                <span>Explore CSync</span>
+                                <span>→</span>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                )}
+              </div>
             )
           })}
           </div>
@@ -193,25 +254,91 @@ export default function Navigation() {
             <div className="p-4 space-y-1">
               {navItems.map((item, i) => {
                 const isActive = pathname === item.href
+                const isProductsItem = item.name === 'Our Products'
+                const LinkComponent = !isProductsItem && item.external ? 'a' : !isProductsItem ? Link : 'div'
+                const linkProps = !isProductsItem && item.external 
+                  ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' }
+                  : !isProductsItem ? { href: item.href } : {}
+                
                 return (
-                  <Link key={item.name} href={item.href}>
-                    <motion.div
-                      initial={{ opacity: 0, x: -16 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.07 }}
-                      onClick={() => setIsOpen(false)}
-                      className={`
-                        flex items-center px-5 py-3 rounded-2xl font-semibold text-sm
-                        transition-all duration-200 cursor-pointer
-                        ${isActive
-                          ? 'bg-gradient-to-r from-primary-600 to-secondary-600 text-white shadow-md'
-                          : 'text-gray-700 hover:bg-gray-100'
+                  <div key={item.name}>
+                    <LinkComponent 
+                      {...linkProps}
+                      onClick={(e) => {
+                        if (isProductsItem) {
+                          e.preventDefault()
+                          setProductsExpandedMobile(!productsExpandedMobile)
+                        } else {
+                          setIsOpen(false)
                         }
-                      `}
+                      }}
                     >
-                      {item.name}
-                    </motion.div>
-                  </Link>
+                      <motion.div
+                        initial={{ opacity: 0, x: -16 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.07 }}
+                        className={`
+                          flex items-center justify-between px-5 py-3 rounded-2xl font-semibold text-sm
+                          transition-all duration-200 cursor-pointer
+                          ${isActive && !isProductsItem
+                            ? 'bg-gradient-to-r from-primary-600 to-secondary-600 text-white shadow-md'
+                            : 'text-gray-700 hover:bg-gray-100'
+                          }
+                        `}
+                      >
+                        <span>{item.name}</span>
+                        {isProductsItem && (
+                          <span className={`ml-2 transition-transform ${productsExpandedMobile ? 'rotate-180' : ''}`}>
+                            ▼
+                          </span>
+                        )}
+                      </motion.div>
+                    </LinkComponent>
+
+                    {/* Mobile Product Card */}
+                    {isProductsItem && (
+                      <AnimatePresence>
+                        {productsExpandedMobile && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="overflow-hidden mt-2"
+                          >
+                            <a
+                              href="https://csync.co/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => setIsOpen(false)}
+                              className="block"
+                            >
+                              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border border-blue-200 p-4">
+                                <div className="flex items-start gap-3 mb-3">
+                                  <img 
+                                    src="https://csync.co/CSync%20Final%20SVG.svg" 
+                                    alt="CSync logo"
+                                    className="w-12 h-12 flex-shrink-0"
+                                  />
+                                  <div>
+                                    <h4 className="font-bold text-gray-900 text-sm">CSync</h4>
+                                    <p className="text-xs text-gray-600">CS Practice Management</p>
+                                  </div>
+                                </div>
+                                <p className="text-gray-700 text-xs leading-relaxed mb-3">
+                                  The operating system for Company Secretary practices. Manage tasks, compliance workflows, approvals, and multi-firm operations.
+                                </p>
+                                <div className="flex items-center gap-2 text-blue-600 font-semibold text-xs">
+                                  <span>Explore CSync</span>
+                                  <span>→</span>
+                                </div>
+                              </div>
+                            </a>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    )}
+                  </div>
                 )
               })}
 

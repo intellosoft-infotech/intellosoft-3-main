@@ -23,9 +23,9 @@ export default function Navigation() {
 
   const navItems = [
     { name: 'About Us', href: '/about' },
+    { name: 'Our Products', href: 'https://csync.co/', external: true },
     { name: 'Services', href: '/services' },
     { name: 'Careers', href: '/careers' },
-    { name: 'Our Products', href: 'https://csync.co/', external: true },
     { name: 'Contact', href: '/contact' },
   ]
 
